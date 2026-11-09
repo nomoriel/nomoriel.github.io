@@ -9,3 +9,7 @@ defaults:
       path: files/phase2vec.pdf
     values:
       sitemap: false
+  - scope:
+      path: googleab897cded71ec43e.html
+    values:
+      sitemap: false
