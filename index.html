@@ -1,360 +1,176 @@
-<!DOCTYPE HTML>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-  <title>Noa Moriel</title>
-  
-  <meta name="author" content="Noa Moriel's Homepage">
+---
+# Page layout. The text comes from _data/content.yml.
+---
+{%- assign c = site.data.content -%}
+{%- assign bold_name = c.name | prepend: "<strong>" | append: "</strong>" -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-MVYYQHNEK7"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
 
-		gtag('config', 'G-MVYYQHNEK7');
-	</script>
-  
-  <link rel="icon" type="image/jpg" href="files/favicon.jpg">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <title>{{ c.seo.title }}</title>
+  <meta name="description" content="{{ c.seo.description | escape }}">
+  <meta name="author" content="{{ c.name }}">
+  <link rel="canonical" href="{{ site.url }}/">
 
-  <script>
-	const copyToClipboard = str => {
-	  const el = document.createElement('textarea');
-	  el.value = str;
-	  document.body.appendChild(el);
-	  el.select();
-	  document.execCommand('copy');
-	  document.body.removeChild(el);
-	  alert("The following bibtextex has been copied to clipboard:\n\n" + el.value);
-	};
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="{{ site.url }}/">
+  <meta property="og:title" content="{{ c.seo.title | escape }}">
+  <meta property="og:description" content="{{ c.seo.share_description | escape }}">
+  <meta property="og:image" content="{{ site.url }}/{{ c.photo }}">
+  <meta property="og:image:alt" content="{{ c.photo_alt | escape }}">
+  <meta property="profile:first_name" content="{{ c.name | split: ' ' | first }}">
+  <meta property="profile:last_name" content="{{ c.name | split: ' ' | last }}">
+  <meta name="twitter:card" content="summary">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": {{ c.name | jsonify }},
+    "url": {{ site.url | append: "/" | jsonify }},
+    "image": {{ site.url | append: "/" | append: c.photo | jsonify }},
+    "jobTitle": {{ c.seo.job_title | jsonify }},
+    "email": {{ c.email | prepend: "mailto:" | jsonify }},
+    "alumniOf": [
+      {%- for org in c.seo.organizations %}
+      {"@type": "Organization", "name": {{ org | jsonify }}}{% unless forloop.last %},{% endunless %}
+      {%- endfor %}
+    ],
+    "knowsAbout": {{ c.seo.topics | jsonify }},
+    "sameAs": {{ c.seo.profiles | jsonify }}
+  }
   </script>
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVYYQHNEK7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MVYYQHNEK7');
+  </script>
+
+  <link rel="icon" type="image/png" href="files/favicon.png">
+  <link rel="apple-touch-icon" href="files/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
+  <link rel="stylesheet" href="stylesheet.css">
 </head>
 
 <body>
-  <table style="width:100%;max-width:1000px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr style="padding:0px">
-      <td style="padding:0px">
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:63%;vertical-align:middle">
-              <p style="text-align:center"><name>Noa Moriel</name></p>
-							<br>
-              <p>I am both a PhD candidate at <a href="https://www.nitzanlab.com/">Dr. Mor Nitzan's lab</a> at the Hebrew University of Jerusalem and a research scientist at IBM. </br>
-                I am fascinated by the principles of design and the emergence of complexity within both natural and biological systems, as well as in artificial environments and machine learning contexts.
-							</p>
-							<br>
-							<p> Prior to this I completed both BSc and MSc supervised by <a href="https://www.cs.huji.ac.il/w~nirf/">Prof. Nir Friedman</a>, worked as an algorithmic developer at <a href="https://www.mobileye.com/about/">Mobileye</a> and worked as a research scientist both at the Broad Institute and at Harvard University.
-							</p>
-							<br>
-              <p style="text-align:center">
-                <a href="mailto:noa.moriel@mail.huji.ac.il">Email</a> &nbsp/&nbsp
-                <a href="https://scholar.google.com/citations?user=r1-eVtIAAAAJ&hl=en">Google Scholar</a> &nbsp/&nbsp
-				<a href="files/Moriel_Noa_CV.pdf">CV</a> &nbsp/&nbsp
-				<!-- <a href="https://github.com/nomoriel">GitHub</a> &nbsp/&nbsp -->
-				<a href="www.linkedin.com/in/noa-moriel-b774542a7">LinkedIn</a> &nbsp/&nbsp
-                <a href="https://twitter.com/moriel_noa">Twitter</a>			
+  <header class="hero">
+    <div class="hero-inner">
+      <img class="portrait" src="{{ c.photo }}" width="640" height="640" alt="{{ c.photo_alt | escape }}">
+      <div class="intro">
+        <h1>{{ c.name }}</h1>
+        <p class="role">{{ c.role | join: "<br>" }}</p>
+        {%- for paragraph in c.bio %}
+        <p>{% include inline.html text=paragraph %}</p>
+        {%- endfor %}
+
+        <div class="email">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="m3 6 9 7 9-7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <a href="mailto:{{ c.email }}">{{ c.email }}</a>
+          <button type="button" class="copy" data-copy="{{ c.email }}">Copy</button>
+        </div>
+
+        <nav class="links" aria-label="Profiles">
+          {%- for link in c.links %}
+          <a class="pill" href="{{ link.url | escape }}">
+            {%- case link.icon -%}
+            {%- when "scholar" %}
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.9V17h2V9z" fill="currentColor"/><path d="M5 13.2v4.3C6.7 19.4 9.2 20.5 12 20.5s5.3-1.1 7-3v-4.3l-7 3.8z" fill="currentColor"/></svg>
+            {%- when "cv" %}
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l6 6v14H6z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 2v6h6M9 13h8M9 17h8" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            {%- when "linkedin" %}
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM2.5 9h3v12h-3zM9 9h2.9v1.7c.5-.9 1.7-2 3.6-2 3.8 0 4.5 2.4 4.5 5.6V21h-3v-5.9c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1v6H9z" fill="currentColor"/></svg>
+            {%- when "github" %}
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5a10.5 10.5 0 0 0-3.3 20.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.4-3.5-1.4-.5-1.2-1.2-1.5-1.2-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.7-1.4-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.8-.1-.3-.5-1.3.1-2.8 0 0 .9-.3 2.9 1.1a10 10 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.6 1.5.2 2.5.1 2.8.7.7 1.1 1.7 1.1 2.8 0 4-2.5 4.9-4.8 5.2.4.3.7 1 .7 1.9v2.9c0 .3.2.6.7.5A10.5 10.5 0 0 0 12 1.5z" fill="currentColor"/></svg>
+            {%- endcase %}
+            {{ link.label }}
+          </a>
+          {%- endfor %}
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="block" aria-labelledby="experience">
+      <h2 id="experience">Experience</h2>
+      <ol class="timeline">
+        {%- for job in c.experience %}
+        <li>
+          <span class="when">{{ job.when }}</span>
+          <div>
+            <h3>{% include inline.html text=job.title %}</h3>
+            <p>{% include inline.html text=job.details %}</p>
+          </div>
+        </li>
+        {%- endfor %}
+      </ol>
+    </section>
+
+    <section class="block" aria-labelledby="publications">
+      <h2 id="publications">Selected publications</h2>
+      <p class="note">{% include inline.html text=c.publications_note %}</p>
+      {%- for group in c.publication_topics %}
+
+      <div class="topic">
+        <h3 class="topic-name">{{ group.topic }}</h3>
+        <div class="papers">
+          {%- for paper in group.papers %}
+          <article class="paper">
+            {%- if paper.image %}
+            <img class="thumb" src="{{ paper.image }}"{% if paper.image_width %} width="{{ paper.image_width }}" height="{{ paper.image_height }}"{% endif %} loading="lazy"
+                 alt="{{ paper.image_alt | escape }}">
+            {%- endif %}
+            <div class="paper-body">
+              <h4><a href="{{ paper.url | escape }}">{% include inline.html text=paper.title %}</a></h4>
+              <p class="authors">{{ paper.authors | replace: "*", "&#42;" | markdownify | remove: "<p>" | remove: "</p>" | strip | replace: c.name, bold_name }}</p>
+              <p class="venue"><span class="badge">{{ paper.venue }}</span>
+                {%- if paper.highlight %} <span class="badge accent">{{ paper.highlight }}</span>{% endif %}
+                {%- if paper.venue_note %} {{ paper.venue_note }}{% endif %}</p>
+              <p class="summary">{% include inline.html text=paper.summary %}</p>
+              <p class="actions">
+                {%- for link in paper.links %}
+                <a class="pill small" href="{{ link.url | escape }}">{{ link.label }}</a>
+                {%- endfor %}
               </p>
-            </td>
-            <td style="padding:2%;width:80%;max-width:80%">
-              <a href="files/profile_oct.jpg"><img style="width:100%;max-width:100%" alt="profile photo" src="files/profile_oct.jpg" class="hoverZoomLink"></a>
-            </td>
-          </tr>
-        </tbody></table>
-		
-		
-		<hr/>
+            </div>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+      {%- endfor %}
+    </section>
 
-        <table style="width:100%; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto;">
-            <tbody>
-              <tr>
-                <td class="table-cell" style="padding:2px; width:100%;">
-                  <heading>Selected Publications</heading>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-              
-          <table style="width:100%; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto;">
-            <tbody>
-              <tr>
-                <td class="table-cell" style="padding:2px; width:25%;">
-                  <div class="img-container">
-                    <!-- Remove width and height attributes and use CSS for styling -->
-                    <img src="files/twa_crop.png" alt="Description of the image">
-                  </div>
-                </td>
-                <td class="table-cell" style="padding:2px; width:75%;">
-                  <papertitle>Let's do the time-warp-attend: learning topological invariants of dynamical systems</papertitle>
-                  <br>
-                  <strong>Noa Moriel*</strong>,
-                  <a href="https://matthew-ricci.net/">Matthew Ricci*</a>,
-                  <a href="https://www.nitzanlab.com/">Mor Nitzan</a>
-                  <br>
-                  <div class="tag is-dark is-normal">ICLR 2024</div>
-                  <div class="btn-group">
-                    <a href="https://openreview.net/forum?id=Fj7Fzm5lWL">Paper</a> /
-                    <a href="https://github.com/nitzanlab/time-warp-attend">Code</a>
-                    <br>
-                    We introduce <i>time-warp-attend</i>, a deep-learning framework that classifies dynamical regimes and detects bifurcation boundaries in systems ranging from electrical circuits to chemical oscillators by learning topologically invariant features. We demonstrate its effectiveness on real-world data including gene expression dynamics in pancreatic development.
-                  </div>
-                </td>
-              </tr>
-        <tr>
-            <td class="table-cell" style="padding:2px; width:25%;">
-                <div class="img-container">
-                  <!-- Remove width and height attributes and use CSS for styling -->
-                  <img src="files/limitations.gif" alt="Description of the image">
-                </div>
-              </td>
-              <td class="table-cell" style="padding:2px; width:75%;">
-              <papertitle>Optimal sequencing budget allocation for trajectory reconstruction of single cells</papertitle>
-              <br>
-			  <strong>Noa Moriel*</strong>,	
-              <a href="https://softmath.seas.harvard.edu/lab-member/edvin-memet/">Edvin Memet*</a>,
-              <a href="https://www.nitzanlab.com/">Mor Nitzan</a>
-        <br>
-        <!-- <div class="tag is-dark is-normal">ISMB 2023</div> -->
-				<div class="btn-group">
-				<!-- <a onclick=copyToClipboard(bibtex_limitations)>BibTeX</a> /  -->
-				<!-- <a href="https://arxiv.org/abs/2211.11743">ArXiv</a> /  -->
-				<a href="https://github.com/nitzanlab/trajectory_reconstruction_tradeoff/">Code</a> 
-				<!-- <a href="https://yanivnik.github.io/sinfusion">Project Page</a>  -->
-				<br> The challenge of charting cellular trajectories over gene expression can be alleviated by increasing either the number of cells sampled along the trajectory (breadth) or the sequencing depth, i.e. the number of reads captured per cell (depth). Here, we study the optimal allocation of a fixed sequencing budget to optimize the recovery of cellular trajectory attributes through empirical subsampling experiments across diverse datasets. 
-				</div>
-            </td>
-		</tr>
-		  <tr>
-            <td class="table-cell" style="padding:2px; width:25%;">
-                <div class="img-container">
-                  <!-- Remove width and height attributes and use CSS for styling -->
-                  <img src="files/phase2vec_crop.png" alt="Description of the image">
-                </div>
-              </td>
-              <td class="table-cell" style="padding:2px; width:75%;">
-              <papertitle>Phase2vec: dynamical systems embedding with a physics-informed convolutional network</papertitle>
-              <br>
-              <a href="https://matthew-ricci.net/">Matthew Ricci</a>,
-              <strong>Noa Moriel</strong>,
-              <a href="https://www.zoepiran.com/en/latest/">Zoe Piran</a>,
-			  <a href="https://www.nitzanlab.com/">Mor Nitzan</a>
-				<br><div class="tag is-dark is-normal">ICLR 2023</div><span class="tag is-warning">Oral</span>
-				<div class="btn-group">
-				<!-- <a onclick=copyToClipboard(bibtex_reconstruction)>BibTeX</a> /  -->
-				<a href="https://openreview.net/forum?id=z9C5dGip90">Paper</a> / 
-				<a href="https://github.com/nitzanlab/phase2vec/">Code</a>
-				<br> We propose <i>phase2vec</i>, an unsupervised embedding method that learns to represent dynamical systems through convolutional networks, enabling accurate classification of systems into key physical classes (e.g., stability, energy conservation) and the prediction of equations from data, with applications demonstrated in meteorological data analysis.
-				</div>
-            </td>
-		</tr>
-        <tr>
-            <td class="table-cell" style="padding:2px; width:25%;">
-                <div class="img-container">
-                  <!-- Remove width and height attributes and use CSS for styling -->
-                  <img src="files/pareto_crop.jpg" alt="Description of the image">
-                </div>
-              </td>
-              <td class="table-cell" style="padding:2px; width:75%;">
-              <papertitle>Emergence of division of labor in tissues through cell interactions and spatial cues</papertitle>
-              <br>
-              <a href="https://www.adler-lab.com/">Miri Adler*</a>,  
-              <strong>Noa Moriel*</strong>,
-              <a href="https://tudaga.github.io/">Aleksandrina Goeva*</a>, ...,
-                <a href="https://www.gene.com/scientists/our-scientists/aviv-regev">Aviv Regev</a>,
-                <a href="https://medicine.yale.edu/profile/ruslan-medzhitov/?tab=bio">Ruslan Medzhitov</a>,
-				<a href="https://www.nitzanlab.com/">Mor Nitzan</a>
-				<br><div class="tag is-dark is-normal">Cell Reports</div>
-				<div class="btn-group">
-				<!-- <a onclick=copyToClipboard(bibtex_pareto)>BibTeX</a> /  -->
-				<a href="https://www.sciencedirect.com/science/article/pii/S2211124723004230">Paper</a> /
-				<a href="https://github.com/nitzanlab/pareto_interactions_py">Code</a>
-				<br>
-				We study the spatial organization of division of labor in the tissue as a function of the underlying directing mechanism, particularly focusing on spatial gradients and cellular interactions. 
-                We find both spatial proximity of specialist cells, and dense archetype crosstalk networks to suggest involvement of cell interactions. 
-                We demonstrate these distinct strategies for intestine enterocytes and colon fibroblasts.
-				</div>
-            </td>
-		</tr>
-        <tr>
-            <td class="table-cell" style="padding:2px; width:25%;">
-                <div class="img-container">
-                  <!-- Remove width and height attributes and use CSS for styling -->
-                  <img src="files/tacco.png" alt="Description of the image">
-                </div>
-              </td>
-              <td class="table-cell" style="padding:2px; width:75%;">
-              <papertitle>TACCO: Unified annotation transfer and decomposition of cell identities for single-cell and spatial omics</papertitle>
-              <br>
-              <a href="https://www.genzentrum.uni-muenchen.de/research-groups/mages/index.html">Simon Mages*</a>,
-              <strong>Noa Moriel*</strong>,...,
-              <a href="https://www.genzentrum.uni-muenchen.de/research-groups/klughammer/index.html">Johanna Klughammer</a>,
-              <a href="https://www.gene.com/scientists/our-scientists/aviv-regev">Aviv Regev</a>,
-              <a href="https://www.nitzanlab.com/">Mor Nitzan</a>
-              <br><div class="tag is-dark is-normal">Nature Biotechnology</div>
-				<div class="btn-group">
-				<!-- <a onclick=copyToClipboard(bibtex_tacco)>BibTeX</a> /  -->
-				<a href="https://www.nature.com/articles/s41587-023-01657-3">Paper</a> /
-				<a href="https://github.com/simonwm/tacco">Code</a>
-				<br>
-				<i>TACCO</i>, a computational framework that transfers annotations from a reference data to multi omic modalities at large scales.
-                TACCO's annotations are based on broad gene expression similarity to the reference data and therefore can be used across diverse setups, e.g. for aggregated expression decomposition, predicting cell fates of progenitor cells, overcoming technical read dropout and more. 
-				</div>
-            </td>
-		</tr>
-        <!-- <tr>
-            <td class="table-cell" style="padding:2px; width:25%;">
-                <div class="img-container">
-                  
-                  <img src="files/crc_crop.png" alt="Description of the image">
-                </div>
-              </td>
-              <td class="table-cell" style="padding:2px; width:75%;">
-              <papertitle>Integrative single cell and spatial transcriptomics of colorectal cancer reveals multicellular functional units that support tumor progression</papertitle>
-              <br>
-              <a href="https://scholar.google.com/citations?user=eqdRRMkAAAAJ&hl=en">Inbal Avraham-Davidi</a>,
-              <a href="https://www.genzentrum.uni-muenchen.de/research-groups/mages/index.html">Simon Mages</a>,
-                <a href="https://www.genzentrum.uni-muenchen.de/research-groups/klughammer/index.html">Johanna Klughammer</a>,
-                <strong>Noa Moriel</strong>,...,
-				<a href="https://www.nitzanlab.com/">Mor Nitzan</a>,
-                <a href="https://www.gene.com/scientists/our-scientists/aviv-regev">Aviv Regev</a>
-				<br><div class="tag is-dark is-normal">BioRxiv</div>
-				<div class="btn-group">
-				
-				<a href="https://www.biorxiv.org/content/10.1101/2022.10.02.508492v1">Paper</a> 
-				<br>
-				We utilized single cell RNA-seq and Slide-seq (spatial omics) to map the cellular composition and spatial organization of healthy and dysplastic colon tissues. We find distinct cellular neighborhoods within tumors that correlate with disease progression in a CRC mouse model.
-				</div>
-            </td>
-		</tr> -->
-        <!-- <tr>
-            <td class="table-cell" style="padding:2px; width:25%;">
-                <div class="img-container">
-          
-                  <img src="files/colocalization.png" alt="Description of the image">
-                </div>
-              </td>
-              <td class="table-cell" style="padding:2px; width:75%;">
-              <papertitle>Using co-localization priors and microenvironment statistics to reconstruct tissue organization from single-cell data</papertitle>
-              <br>
-              <a href="https://www.linkedin.com/in/yitzchak-vaknin/">Yitzchak Vaknin</a>,  
-              <strong>Noa Moriel</strong>,
-				<a href="https://www.nitzanlab.com/">Mor Nitzan</a>
-				<br><div class="tag is-dark is-normal">NeurIPS LMRL Workshop 2022</div>
-				<div class="btn-group">
-				
-				<a href="https://openreview.net/forum?id=Pp2jPHrlzc">Paper</a> 
-				<br>
-				Given single-cell data, we wish to reconstruct the spatial organization of the tissue. Previous work can leverage a potential reference atlas and an assumption of smooth expression (see <a href="https://www.nature.com/articles/s41586-019-1773-3" >novoSpaRc</a>). Here, we incorporate co-localization priors, such as cell-type neighborhoods to novoSpaRc, showing its contribution in reconstructing the mammalian organ of Corti and the testicular spatial structure.
-				</div>
-            </td>
-		</tr> -->
-        <tr>
-            <td class="table-cell" style="padding:2px; width:25%;">
-                <div class="img-container">
-                  <!-- Remove width and height attributes and use CSS for styling -->
-                  <img src="files/novosparc_crop.jpg" alt="Description of the image">
-                </div>
-              </td>
-              <td class="table-cell" style="padding:2px; width:75%;">
-              <papertitle>NovoSpaRc: Flexible Spatial Reconstruction of Single-Cell Gene Expression with Optimal Transport</papertitle>
-              <br>
-                <strong>Noa Moriel*</strong>,
-				<a href="https://scholar.google.com.tr/citations?user=1Nas6ZQAAAAJ&hl=en">Enes Senel*</a>,
-                <a href="https://www.cs.huji.ac.il/w~nirf/">Nir Friedman</a>,
-                <a href="https://www.mdc-berlin.de/n-rajewsky">Nikolaus Rajewsky</a>,
-                <a href="https://nukappa.github.io/">Nikos Karaiskos</a>,
-				<a href="https://www.nitzanlab.com/">Mor Nitzan</a>
-				<br><div class="tag is-dark is-normal">Nature Protocols</div>
-				<div class="btn-group">
-				<!-- <a onclick=copyToClipboard(bibtex_novosparc)>BibTeX</a> /  -->
-				<a href="https://doi.org/10.1038/s41596-021-00573-7">Paper</a> /
-				<a href="https://pypi.org/project/novosparc">Code</a>
-				<br>
-				<i>novoSpaRc</i> is an optimal transport algorithm that spatially reconstructs tissues given scRNA-seq data, using a structural correspondence assumption, and optionally, by including a reference atlas. We delve into the novoSpaRc algorithm, provide additional examples and a step-by-step guide towards optimal reconstruction using these strategies of the Drosophila embryo reconstruction.
-				</div>
-            </td>
-		</tr>
-        </tbody></table>
+    <section class="block" aria-labelledby="teaching">
+      <h2 id="teaching">Teaching</h2>
+      <p class="sub">{{ c.teaching_place }}</p>
+      <ul class="plain">
+        {%- for item in c.teaching %}
+        <li><span class="when">{{ item.when }}</span> {% include inline.html text=item.text %}</li>
+        {%- endfor %}
+      </ul>
+    </section>
 
+    <section class="block" aria-labelledby="beyond">
+      <h2 id="beyond">Beyond research</h2>
+      <div class="prose">
+        {%- for paragraph in c.beyond_research %}
+        <p>{% include inline.html text=paragraph %}</p>
+        {%- endfor %}
+      </div>
+    </section>
+  </main>
 
-		<hr/>
-		
-		<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
-          <tr>
-            <td>
-              <heading>Teaching</heading>
-            </td>
-          </tr>
-        </tbody></table>
-        <table width="100%" align="center" border="0" cellpadding="20"><tbody>
-		  <tr>
-			<td class="table-cell" style="padding:2px; width:25%;">
-                <div class="img-container">
-                  <!-- Remove width and height attributes and use CSS for styling -->
-                  <img src="files/huji.png" alt="Description of the image">
-                </div>
-              </td>
-              <td class="table-cell" style="padding:2px; width:75%;">
-              Supervising assistant of Computational Methods in Molecular Biology Lab [2024]
-			  <br/>
-              Introduction to Machine Learning [Spring 2023]
-              <br/>
-			  Introduction to Artifical Intelligence [Spring 2022]
-			  <br/>
-              Genomics [Spring 2017]
-			  <br/>
-              Algorithms in Computational Biology [Fall 2017]
-            </td>
-          </tr>
-        </tbody></table>
+  <footer>
+    <p>{{ c.name }}, {{ site.time | date: "%Y" }}</p>
+  </footer>
 
-
-
-		<hr/>
-		
-		
-		<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
-          <tr>
-            <td>
-              <heading>Others</heading>
-            </td>
-          </tr>
-        </tbody></table>
-        <table width="100%" align="center" border="0" cellpadding="20"><tbody>
-		  <tr>
-            <td width="100%" valign="center">
-              I have a precious little daughter, Naya.
-                Sports keep me sane. I enjoy running, swimming, and hiking. <br/>
-			  I love experimenting with arts, including woodworking, pottery, glass art, printing, as well as with regrowing various plants. <br/>
-              These are my awesome brothers: <a href="https://scholar.google.co.il/citations?user=G_g10kgAAAAJ&hl=iw">postdoc Avraham Moriel</a>, <a href="https://azrielifoundation.org/wp-content/uploads/2022/02/Baby-First-Microbiome_Web-Single-Pages.pdf">MD PhD Nadav Moriel</a>, and (fresh scholar) Gilad Moriel. </br>
-              <!-- My mom: "How are you going to feel when all of your brothers are doctors and you're not?", hence the PhD (&#x1F609;). <br/> -->
-                A podcast episode I found especially inspiring: <a href="https://ogjre.com/episode/1724-jewel"> Joe Rogan interviewing singer-songwriter Jewel </a> <br/>
-                Favorite soundtracks: <a href="https://open.spotify.com/playlist/36NMhpq6exkxnETYgZK1OJ">Gardians of the Galaxy</a> and <a href="https://open.spotify.com/album/1kCHru7uhxBUdzkm4gzRQc" >Hamilton</a>.
-            </td>
-          </tr>
-        </tbody></table> 
-
-
-
-		<hr/>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:0px">
-              <br>
-              <p style="margin-top:-20px;text-align:center;font-size:small;">
-                This website is based on <a href="https://jonbarron.info/">Jon Barron</a>'s <a href="https://github.com/jonbarron/jonbarron_website">homepage template</a>
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
-
-		
-      </td>
-    </tr>
-  </table>
+  <script src="site.js"></script>
 </body>
-
 </html>

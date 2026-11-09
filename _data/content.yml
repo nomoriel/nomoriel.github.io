@@ -1,0 +1,301 @@
+# All text on the website lives in this file. Edit it, commit, push: GitHub Pages rebuilds the site.
+#
+# Formatting inside text fields (Markdown):
+#   [link text](https://example.com)   a link
+#   **bold**   *italic*
+# In author lists, "*" means equal contribution and "Noa Moriel" is bolded automatically.
+# Text after ">-" can continue on the next lines; keep the indentation.
+
+seo:
+  title: Noa Moriel | Machine Learning Research Scientist
+  description: >-
+    Noa Moriel is a machine learning research scientist working on foundation models, agentic
+    pipelines and learning the dynamics of complex systems, with experience at Riverside, IBM
+    Research, Mobileye and Harvard. PhD in computer science from the Hebrew University of Jerusalem.
+  share_description: >-
+    Machine learning research scientist: foundation models, agentic pipelines and the dynamics of
+    complex systems. PhD, Hebrew University of Jerusalem.
+  job_title: Machine Learning Research Scientist
+  organizations:
+    - The Hebrew University of Jerusalem
+    - Riverside
+    - IBM Research
+    - Harvard University
+    - Mobileye
+    - Broad Institute of MIT and Harvard
+  topics:
+    - Machine learning
+    - Foundation models
+    - Agentic pipelines
+    - Natural language processing
+    - Dynamical systems
+    - Single-cell genomics
+    - Spatial transcriptomics
+    - Optimal transport
+  profiles:
+    - https://scholar.google.com/citations?user=r1-eVtIAAAAJ
+    - https://www.linkedin.com/in/noa-moriel-b774542a7/
+    - https://github.com/nomoriel
+
+name: Noa Moriel
+photo: files/noa-moriel.jpg
+photo_alt: Noa Moriel on a beach, with a sea turtle resting behind her
+email: nomoriel@gmail.com
+
+role:
+  - Machine learning research scientist
+  - PhD in computer science, Hebrew University of Jerusalem
+
+bio:
+  - >-
+    I am interested in the underlying principles that give rise to biological complexity, and in how
+    information emerges through machine learning paradigms. Across my academic and industry work, I
+    have been fortunate to study these fundamental questions and to apply what I learned across
+    fields, including video editing, autonomous driving, dynamical systems and cell foundation models.
+
+# icon: scholar, cv, linkedin or github
+links:
+  - label: Google Scholar
+    url: https://scholar.google.com/citations?user=r1-eVtIAAAAJ&hl=en
+    icon: scholar
+  - label: CV
+    url: files/Moriel_Noa_CV.pdf
+    icon: cv
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/noa-moriel-b774542a7/
+    icon: linkedin
+
+experience:
+  - when: 2025 – now
+    title: NLP Research Engineer, [Riverside](https://riverside.fm)
+    details: Built agentic and ML pipelines that automatically edit recorded episodes.
+  - when: 2024 – 2025
+    title: Research Scientist, [IBM Research](https://research.ibm.com/)
+    details: Quantified confidence in transcriptomic foundation models.
+  - when: 2020 – 2025
+    title: PhD in Computer Science, Hebrew University of Jerusalem
+    details: >-
+      Advised by [Dr. Mor Nitzan](https://www.nitzanlab.com/). Machine learning for dynamical
+      systems and single-cell biology. Council of Higher Education and CIDR PhD fellowships.
+  - when: 2019 – 2020
+    title: Research Scientist, Harvard University
+    details: Reconstructed tissue structure from single-cell data with optimal transport (NovoSpaRc).
+  - when: 2018 – 2019
+    title: Algorithm Engineer, [Mobileye](https://www.mobileye.com/)
+    details: Built real-time deep learning detection and scene-understanding models for autonomous vehicles.
+  - when: 2016 – 2018
+    title: MSc in Computer Science and Computational Biology, Hebrew University of Jerusalem
+    details: >-
+      Advised by [Prof. Nir Friedman](https://www.cs.huji.ac.il/w~nirf/). Adapted single-cell
+      RNA-seq to yeast, both technologically and computationally. 2nd in class, with an exchange at
+      the University of Toronto.
+  - when: "2016"
+    title: Research Scientist, Broad Institute of MIT and Harvard
+    details: >-
+      Experimented with single-cell RNA-seq methods and their analysis in yeast, and designed a
+      CRISPR combinatorial perturbation library.
+  - when: 2012 – 2015
+    title: BSc in Computer Science and Computational Biology, Hebrew University of Jerusalem
+    details: >-
+      Quantified how much of the variance in yeast stress response is explained by cell-cycle
+      variation. Magna cum laude, Dean's Award.
+
+publications_note: >-
+  \* equal contribution. Full list on
+  [Google Scholar](https://scholar.google.com/citations?user=r1-eVtIAAAAJ&hl=en).
+
+# Each topic is a group of papers. image, image_width and image_height are optional.
+publication_topics:
+  - topic: Foundation models for biology
+    papers:
+      - title: >-
+          Toward a coherent virtual cell model: probing biological world-model coherence in
+          transcriptomic foundation models
+        url: https://openreview.net/forum?id=nLy3iIONkt
+        authors: Noa Moriel, Yishai Shimoni, Michal Rosen-Zvi, Michael M. Danziger
+        venue: NeurIPS 2025 workshop
+        venue_note: AI for virtual cells and drug discovery (AI4D3)
+        image: files/virtual_cell_fig1.png
+        image_width: 640
+        image_height: 640
+        image_alt: >-
+          Pretraining loss landscape over gene expression space: low for real cells, high for
+          shuffled and interpolated samples
+        summary: >-
+          Can a transcriptomic foundation model tell a real cell from a shuffled one? We propose a
+          model-agnostic test based on synthetic samples and pretraining loss. Models separate real
+          from shuffled cells and show loss barriers between distant cell types, but a coherent
+          world model is far from universal.
+        links:
+          - label: Paper
+            url: https://openreview.net/forum?id=nLy3iIONkt
+          - label: PDF
+            url: https://ai4d3.github.io/2025/papers/26_Toward_a_Coherent_Virtual_C.pdf
+          - label: IBM Research
+            url: https://research.ibm.com/publications/toward-a-coherent-virtual-cell-model-probing-biological-world-model-coherence-in-transcriptomic-foundation-models
+
+  - topic: Machine learning for dynamical systems
+    papers:
+      - title: "Let's do the time-warp-attend: learning topological invariants of dynamical systems"
+        url: https://openreview.net/forum?id=Fj7Fzm5lWL
+        authors: >-
+          Noa Moriel*, [Matthew Ricci](https://matthew-ricci.net/)*,
+          [Mor Nitzan](https://www.nitzanlab.com/)
+        venue: ICLR 2024
+        image: files/twa_crop.png
+        image_width: 261
+        image_height: 224
+        image_alt: Cell-cycle scores predicted by time-warp-attend on single-cell gene expression
+        summary: >-
+          A deep-learning framework that classifies dynamical regimes and detects bifurcation
+          boundaries by learning topologically invariant features, from electrical circuits to gene
+          expression in pancreatic development.
+        links:
+          - label: Paper
+            url: https://openreview.net/forum?id=Fj7Fzm5lWL
+          - label: Code
+            url: https://github.com/nitzanlab/time-warp-attend
+
+      - title: "Phase2vec: dynamical systems embedding with a physics-informed convolutional network"
+        url: https://openreview.net/forum?id=z9C5dGip90
+        authors: >-
+          [Matthew Ricci](https://matthew-ricci.net/), Noa Moriel,
+          [Zoe Piran](https://www.zoepiran.com/en/latest/), [Mor Nitzan](https://www.nitzanlab.com/)
+        venue: ICLR 2023
+        highlight: Oral
+        image: files/phase2vec_crop.png
+        image_width: 612
+        image_height: 411
+        image_alt: Phase2vec embedding of dynamical systems
+        summary: >-
+          An unsupervised embedding of dynamical systems that classifies them into physical classes
+          such as stability and energy conservation, and predicts equations from data, with an
+          application to meteorological data.
+        links:
+          - label: Paper
+            url: https://openreview.net/forum?id=z9C5dGip90
+          - label: Code
+            url: https://github.com/nitzanlab/phase2vec/
+
+  - topic: Single-cell and spatial genomics
+    papers:
+      - title: Optimal sequencing budget allocation for trajectory reconstruction of single cells
+        url: https://doi.org/10.1093/bioinformatics/btae258
+        authors: >-
+          Noa Moriel*, [Edvin Memet](https://softmath.seas.harvard.edu/lab-member/edvin-memet/)*,
+          [Mor Nitzan](https://www.nitzanlab.com/)
+        venue: ISMB 2024
+        venue_note: Bioinformatics
+        image: files/limitations.gif
+        image_width: 432
+        image_height: 288
+        image_alt: Trajectory reconstruction as sequencing breadth and depth change
+        summary: >-
+          With a fixed sequencing budget, should you sequence more cells or each cell more deeply?
+          We show reconstruction accuracy scales with the logarithm of either, and that the best
+          allocation follows a power law in the budget.
+        links:
+          - label: Paper
+            url: https://doi.org/10.1093/bioinformatics/btae258
+          - label: Code
+            url: https://github.com/nitzanlab/trajectory_reconstruction_tradeoff/
+
+      - title: Emergence of division of labor in tissues through cell interactions and spatial cues
+        url: https://www.sciencedirect.com/science/article/pii/S2211124723004230
+        authors: >-
+          [Miri Adler](https://www.adler-lab.com/)*, Noa Moriel*,
+          [Aleksandrina Goeva](https://tudaga.github.io/)*, …,
+          [Aviv Regev](https://www.gene.com/scientists/our-scientists/aviv-regev),
+          [Ruslan Medzhitov](https://medicine.yale.edu/profile/ruslan-medzhitov/?tab=bio),
+          [Mor Nitzan](https://www.nitzanlab.com/)
+        venue: Cell Reports 2023
+        image: files/pareto_crop.jpg
+        image_width: 458
+        image_height: 204
+        image_alt: Pareto front of specialist cell archetypes
+        summary: >-
+          How do tissues organize division of labor in space? We contrast spatial gradients with
+          cell–cell interactions and find signatures of both, in intestine enterocytes and colon
+          fibroblasts.
+        links:
+          - label: Paper
+            url: https://www.sciencedirect.com/science/article/pii/S2211124723004230
+          - label: Code
+            url: https://github.com/nitzanlab/pareto_interactions_py
+
+      - title: >-
+          TACCO unifies annotation transfer and decomposition of cell identities for single-cell
+          and spatial omics
+        url: https://www.nature.com/articles/s41587-023-01657-3
+        authors: >-
+          [Simon Mages](https://www.genzentrum.uni-muenchen.de/research-groups/mages/index.html)*,
+          Noa Moriel*, …,
+          [Johanna Klughammer](https://www.genzentrum.uni-muenchen.de/research-groups/klughammer/index.html),
+          [Aviv Regev](https://www.gene.com/scientists/our-scientists/aviv-regev),
+          [Mor Nitzan](https://www.nitzanlab.com/)
+        venue: Nature Biotechnology 2023
+        image: files/tacco.png
+        image_width: 384
+        image_height: 284
+        image_alt: TACCO annotation transfer overview
+        summary: >-
+          A framework that transfers annotations from reference data to single-cell and spatial
+          omics at scale, supporting expression decomposition, cell fate prediction and recovery
+          from read dropout. We used it to map spatially defined functional units in colorectal
+          cancer ([eLife 2025](https://elifesciences.org/articles/104815)).
+        links:
+          - label: Paper
+            url: https://www.nature.com/articles/s41587-023-01657-3
+          - label: Code
+            url: https://github.com/simonwm/tacco
+          - label: Colorectal cancer paper
+            url: https://elifesciences.org/articles/104815
+
+      - title: >-
+          NovoSpaRc: flexible spatial reconstruction of single-cell gene expression with optimal
+          transport
+        url: https://doi.org/10.1038/s41596-021-00573-7
+        authors: >-
+          Noa Moriel*, [Enes Senel](https://scholar.google.com.tr/citations?user=1Nas6ZQAAAAJ&hl=en)*,
+          [Nir Friedman](https://www.cs.huji.ac.il/w~nirf/),
+          [Nikolaus Rajewsky](https://www.mdc-berlin.de/n-rajewsky),
+          [Nikos Karaiskos](https://nukappa.github.io/), [Mor Nitzan](https://www.nitzanlab.com/)
+        venue: Nature Protocols 2021
+        image: files/novosparc_crop.jpg
+        image_width: 273
+        image_height: 177
+        image_alt: novoSpaRc reconstruction of a Drosophila embryo
+        summary: >-
+          An optimal transport algorithm that reconstructs tissue structure from single-cell
+          RNA-seq, optionally guided by a reference atlas, with a step-by-step guide on the
+          Drosophila embryo.
+        links:
+          - label: Paper
+            url: https://doi.org/10.1038/s41596-021-00573-7
+          - label: Code
+            url: https://pypi.org/project/novosparc
+
+teaching_place: Hebrew University of Jerusalem
+teaching:
+  - when: "2024"
+    text: Supervising assistant, Computational Methods in Molecular Biology Lab
+  - when: "2023"
+    text: Teaching assistant, Introduction to Machine Learning
+  - when: "2022"
+    text: Teaching assistant, Introduction to Artificial Intelligence
+  - when: "2017"
+    text: Teaching assistant, Genomics
+  - when: "2017"
+    text: Teaching assistant, Algorithms in Computational Biology
+
+# Each item is its own paragraph.
+beyond_research:
+  - I have a precious little daughter, Naya.
+  - >-
+    Sports keep me sane: I enjoy running, swimming and hiking. I love experimenting with arts,
+    including woodworking, pottery, glass art and printing, and with regrowing all kinds of plants.
+  - >-
+    These are my awesome brothers:
+    [postdoc Avraham Moriel](https://scholar.google.co.il/citations?user=G_g10kgAAAAJ&hl=iw),
+    [MD PhD Nadav Moriel](https://www.linkedin.com/in/nadav-moriel-147651398/),
+    and (fresh scholar) Gilad Moriel.
