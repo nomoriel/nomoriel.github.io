@@ -1,0 +1,11 @@
+url: https://nomoriel.github.io
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+exclude:
+  - README.md
+defaults:
+  - scope:
+      path: files/phase2vec.pdf
+    values:
+      sitemap: false
